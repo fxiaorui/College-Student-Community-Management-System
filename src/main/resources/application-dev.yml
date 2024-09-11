@@ -1,0 +1,42 @@
+# 服务器的配置
+server:
+  # 服务占用的端口
+  port: 8080
+
+spring:
+  datasource:
+    # 连接数据库的URL
+    url: jdbc:mysql://localhost:3306/cscms?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    # 数据库用户名
+    username: root
+    # 数据库密码
+    password: root
+    # Druid连接池的配置
+    druid:
+      # 初始化连接数量
+      initial-size: 5
+      # 最大激活数量
+      max-active: 20
+
+# 日志配置
+logging:
+  # 显示级别
+  level:
+    # 某根包（配置将应用于此包及子孙包）的显示级别
+    com.example: debug
+
+# 自定义配置
+background-service:
+  jwt:
+    # JWT验证值
+    secret-key: 1234567890
+    # 登录有效时长
+    duration-in-minute: 518400
+  service:
+    common:
+      select:
+        # 默认每页显示条数
+        default-pageSize: 10
+    user:
+      # 默认密码
+      default-password: 123456

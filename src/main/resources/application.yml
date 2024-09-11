@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+  jackson:
+    default-property-inclusion: non_null
+  web:
+    resources:
+      static-locations: [classpath:/static/]
+
+server:
+  servlet:
+    encoding:
+      force: true
+      charset: utf-8
+
+## Knife4j配置
+#knife4j:
+#  # 开启增强模式
+#  enable: true
