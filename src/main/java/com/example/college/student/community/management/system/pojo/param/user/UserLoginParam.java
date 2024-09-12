@@ -13,11 +13,11 @@ import java.io.Serializable;
 public class UserLoginParam implements Serializable {
 
     /**
-     * 用户名
+     * 学号
      */
-    @NotNull(message = "请提交用户名")
+    @NotNull(message = "请提交学号")
     @Pattern(regexp = "^[a-zA-Z0-9]{4,15}$", message = "用户名必须是4~15长度的字符组成，且不允许使用标点符号")
-    private String username;
+    private String studentId;
 
     /**
      * 密码(明文)
@@ -25,5 +25,4 @@ public class UserLoginParam implements Serializable {
     @NotNull(message = "请提交密码")
     @Pattern(regexp = "^.{4,15}$", message = "密码必须是4~15长度的字符组成")
     private String password;
-
 }

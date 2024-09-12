@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.college.student.community.management.system.dao.persist.mapper.UserMapper">
+
+    <resultMap id="LoginInfoResultMap" type="com.example.college.student.community.management.system.pojo.vo.user.UserLoginInfoVO">
+        <id column="id" property="id"/>
+        <result column="student_id" property="studentId"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="email" property="email"/>
+        <result column="major" property="major"/>
+        <result column="class_id" property="classId"/>
+        <result column="status" property="status"/>
+        <collection property="permissions" ofType="java.lang.String">
+            <constructor>
+                <arg column="value"/>
+            </constructor>
+        </collection>
+    </resultMap>
+
+    <!-- UserLoginInfoVO getLoginInfoByUsername(String username); -->
+    <select id="getLoginInfoByUsername" resultMap="LoginInfoResultMap">
+        SELECT
+            u.id,
+            u.student_id,
+            u.password,
+            u.name,
+            u.sex,
+            u.email,
+            u.major,
+            u.class_id,
+            p.value
+        FROM user u
+                 LEFT JOIN user_role ur ON u.id = ur.user_id
+                 LEFT JOIN role_permission rp ON ur.role_id = rp.role_id
+                 LEFT JOIN permission p ON rp.permission_id = p.id
+        WHERE
+            u.student_id = #{student_id}
+    </select>
+
+</mapper>

@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService, ServiceConstants {
     @Override
     public UserLoginResultVO login(UserLoginParam userLoginParam, String remoteAddr, String userAgent) {
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                userLoginParam.getUsername(),
+                userLoginParam.getStudentId(),
                 userLoginParam.getPassword()
         );
         Authentication authenticateResult = authenticationManager.authenticate(authentication);
@@ -81,16 +81,16 @@ public class UserServiceImpl implements UserService, ServiceConstants {
 
         CustomUserDetails userDetails = (CustomUserDetails) authenticateResult.getPrincipal();
         Long id = userDetails.getId();
-        Long deptId = userDetails.getDeptId();
-        String username = userDetails.getUsername();
+        String studentId = userDetails.getStudentId();
+        String name = userDetails.getName();
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
         String authoritiesJsonString = JSON.toJSONString(authorities);
 
         Date date = new Date(System.currentTimeMillis() + 60L * 1000 * durationInMinute);
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", id);
-        claims.put("username", username);
-        claims.put("deptId", deptId);
+        claims.put("studentId", studentId);
+        claims.put("name", name);
         // 生成JWT时，不再存入权限列表
         // claims.put("authoritiesJsonString", authoritiesJsonString);
         String jwt = Jwts.builder()
@@ -113,8 +113,13 @@ public class UserServiceImpl implements UserService, ServiceConstants {
 
         return new UserLoginResultVO()
                 .setId(id)
-                .setNickname(userDetails.getNickname())
-                .setUsername(username)
+                .setStudentId(userDetails.getStudentId())
+                .setName(userDetails.getName())
+                .setSex(userDetails.getSex())
+                .setEmail(userDetails.getEmail())
+                .setMajor(userDetails.getMajor())
+                .setClassId(userDetails.getClassId())
+                .setStatus("1")
                 .setToken(jwt);
     }
 
@@ -132,8 +137,8 @@ public class UserServiceImpl implements UserService, ServiceConstants {
     @Override
     public void reg(UserRegParam userRegParam) {
         {
-            if (userRepository.selectByUsername(userRegParam.getUsername()) != null) {
-                String message = "注册失败，用户名已经被占用!";
+            if (userRepository.selectByStudentId(userRegParam.getStudentId()) != null) {
+                String message = "注册失败，该学号已注册!";
                 log.warn(message);
                 throw new ServiceException(ServiceCode.ERROR_CONFLICT, message);
             }
@@ -182,8 +187,8 @@ public class UserServiceImpl implements UserService, ServiceConstants {
     @Override
     public void add(UserAddParam userAddParam, CurrentPrincipal currentPrincipal) {
         {
-            if (userRepository.selectByUsername(userAddParam.getUsername()) != null) {
-                String message = "新增用户失败, 用户名已经被占用!";
+            if (userRepository.selectByStudentId(userAddParam.getStudentId()) != null) {
+                String message = "新增用户失败, 该学号已存在!";
                 log.warn(message);
                 throw new ServiceException(ServiceCode.ERROR_CONFLICT, message);
             }
@@ -234,7 +239,7 @@ public class UserServiceImpl implements UserService, ServiceConstants {
                 log.warn(message);
                 throw new ServiceException(ServiceCode.ERROR_NOT_FOUND, message);
             }
-            if (userRepository.selectByUsernameNotId(userEditParam.getId(), userEditParam.getUsername()) != null) {
+            if (userRepository.selectByStudentIdNotId(userEditParam.getId(), userEditParam.getStudentId()) != null) {
                 String message = "修改用户失败, 用户名已经被占用!";
                 log.warn(message);
                 throw new ServiceException(ServiceCode.ERROR_CONFLICT, message);

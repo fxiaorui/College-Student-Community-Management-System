@@ -22,9 +22,9 @@ public class User extends Entity {
     private Long id;
 
     /**
-     * 用户名
+     * 学号
      */
-    private String username;
+    private String studentId;
 
     /**
      * 密码(密文)
@@ -32,14 +32,29 @@ public class User extends Entity {
     private String password;
 
     /**
-     * 昵称
+     * 姓名
      */
-    private String nickname;
+    private String name;
 
     /**
      * 性别
      */
     private String sex;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 专业
+     */
+    private String major;
+
+    /**
+     * 班级
+     */
+    private String classId;
 
     /**
      * 状态

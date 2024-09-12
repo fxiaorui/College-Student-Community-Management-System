@@ -18,22 +18,38 @@ public class CustomUserDetails extends User {
 
     private final Long id;
 
-    private final Long deptId;
+    private final String studentId;
 
-    private final String nickname;
+    private final String name;
+
+    private final String sex;
+
+    private final String email;
+
+    private final String major;
+
+    private final String classId;
 
 
     public CustomUserDetails(Long id,
-                             Long deptId,
-                             String nickname,
-                             String username,
+                             String studentId,
                              String password,
+                             String name,
+                             String sex,
+                             String email,
+                             String major,
+                             String classId,
                              boolean status,
                              Collection<? extends GrantedAuthority> authorities) {
-        super(username, password, status, true, true, true, authorities);
+        super(studentId, password, status, true, true, true, authorities);
         this.id = id;
-        this.deptId = deptId;
-        this.nickname = nickname;
+        this.studentId = studentId;
+        this.name = name;
+        this.sex = sex;
+        this.email = email;
+        this.major = major;
+        this.classId = classId;
+
     }
 
 }

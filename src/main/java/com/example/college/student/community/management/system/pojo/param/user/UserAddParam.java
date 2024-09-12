@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 /**
  * 新增用户参数类
@@ -13,23 +12,46 @@ import javax.validation.constraints.Pattern;
 public class UserAddParam {
 
     /**
-     * 用户名
+     * 学号
      */
-    @NotNull(message = "请提交用户名")
-    @Pattern(regexp = "^[a-zA-Z0-9]{4,15}$", message = "用户名必须是4~15长度的字符组成，且不允许使用标点符号")
-    private String username;
+    @NotNull(message = "请提交学号")
+    private String studentId;
 
     /**
-     * 昵称
+     * 密码(密文)
      */
-    @NotNull(message = "请提交昵称")
-    private String nickname;
+    @NotNull(message = "请提交密码")
+    private String password;
+
+    /**
+     * 姓名
+     */
+    @NotNull(message = "请提交姓名")
+    private String name;
 
     /**
      * 性别
      */
     @NotNull(message = "请提交性别")
     private String sex;
+
+    /**
+     * 邮箱
+     */
+    @NotNull(message = "请提交邮箱")
+    private String email;
+
+    /**
+     * 专业
+     */
+    @NotNull(message = "请提交专业")
+    private String major;
+
+    /**
+     * 班级
+     */
+    @NotNull(message = "请提交班级")
+    private String classId;
 
     /**
      * 角色列表

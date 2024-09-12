@@ -14,11 +14,10 @@ import java.io.Serializable;
 public class UserRegParam implements Serializable {
 
     /**
-     * 用户名
+     * 学号
      */
-    @NotNull(message = "请提交用户名")
-    @Pattern(regexp = "^[a-zA-Z0-9]{4,15}$", message = "用户名必须是4~15长度的字符组成，且不允许使用标点符号")
-    private String username;
+    @NotNull(message = "请提交学号")
+    private String studentId;
 
     /**
      * 密码(明文)
@@ -28,9 +27,32 @@ public class UserRegParam implements Serializable {
     private String password;
 
     /**
-     * 角色列表
+     * 姓名
      */
-    @NotEmpty(message = "请提交角色列表")
-    private Long[] roleIds;
+    @NotNull(message = "请提交姓名")
+    private String name;
 
+    /**
+     * 性别
+     */
+    @NotNull(message = "请提交性别")
+    private String sex;
+
+    /**
+     * 邮箱
+     */
+    @NotNull(message = "请提交邮箱")
+    private String email;
+
+    /**
+     * 专业
+     */
+    @NotNull(message = "请提交专业")
+    private String major;
+
+    /**
+     * 班级
+     */
+    @NotNull(message = "请提交班级")
+    private String classId;
 }

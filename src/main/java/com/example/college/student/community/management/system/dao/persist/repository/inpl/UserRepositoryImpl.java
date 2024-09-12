@@ -50,19 +50,19 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User selectByUsername(String username) {
-        log.debug("【查询用户信息】, 用户名: {}", username);
+    public User selectByStudentId(String studentId) {
+        log.debug("【查询用户信息】, 学号: {}", studentId);
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("username", username);
+        wrapper.eq("student_id", studentId);
         return userMapper.selectOne(wrapper);
     }
 
     @Override
-    public User selectByUsernameNotId(Long id, String name) {
-        log.debug("【查询用户】, !ID: {}, username: {}", id, name);
+    public User selectByStudentIdNotId(Long id, String studentId) {
+        log.debug("【查询用户】, !ID: {}, studentId: {}", id, studentId);
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.ne("id", id);
-        wrapper.eq("username", name);
+        wrapper.eq("student_id", studentId);
         return userMapper.selectOne(wrapper);
     }
 

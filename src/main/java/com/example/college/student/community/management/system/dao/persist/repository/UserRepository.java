@@ -48,16 +48,16 @@ public interface UserRepository {
      * @param username 用户名
      * @return 用户信息
      */
-    User selectByUsername(String username);
+    User selectByStudentId(String username);
 
     /**
-     * 根据用户名查询ID不为此的数据
+     * 根据学号查询ID不为此的数据
      *
-     * @param id   科室ID
+     * @param id   ID
      * @param name 用户名
      * @return 符合条件的科室数据
      */
-    User selectByUsernameNotId(Long id, String name);
+    User selectByStudentIdNotId(Long id, String name);
 
     /**
      * 根据用户名查询用户登录信息

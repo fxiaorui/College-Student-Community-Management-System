@@ -12,38 +12,52 @@ import java.util.List;
 public class UserLoginInfoVO implements Serializable {
 
     /**
-     * 数据id
+     * 用户ID
      */
     private Long id;
 
     /**
-     * 科室ID
+     * 学号
      */
-    private Long deptId;
+    private String studentId;
 
     /**
-     * 用户名
-     */
-    private String username;
-
-    /**
-     * 密码（密文）
+     * 密码(密文)
      */
     private String password;
 
     /**
-     * 昵称
+     * 姓名
      */
-    private String nickname;
+    private String name;
 
     /**
-     * 是否启用，1=启用，0=未启用
+     * 性别
      */
-    private Integer status;
+    private String sex;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 专业
+     */
+    private String major;
+
+    /**
+     * 班级
+     */
+    private String classId;
+
+    /**
+     * 状态
+     */
+    private String status;
 
     /**
      * 权限列表
      */
     private List<String> permissions;
-
 }

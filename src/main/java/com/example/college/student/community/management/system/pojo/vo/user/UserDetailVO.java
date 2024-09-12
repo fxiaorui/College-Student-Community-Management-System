@@ -2,6 +2,8 @@ package com.example.college.student.community.management.system.pojo.vo.user;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -16,19 +18,19 @@ public class UserDetailVO implements Serializable {
     private Long id;
 
     /**
-     * 科室ID
+     * 学号
      */
-    private Long deptId;
+    private String studentId;
 
     /**
-     * 用户名
+     * 密码(密文)
      */
-    private String username;
+    private String password;
 
     /**
-     * 昵称
+     * 姓名
      */
-    private String nickname;
+    private String name;
 
     /**
      * 性别
@@ -36,9 +38,19 @@ public class UserDetailVO implements Serializable {
     private String sex;
 
     /**
-     * 身份证号
+     * 邮箱
      */
-    private String idCard;
+    private String email;
+
+    /**
+     * 专业
+     */
+    private String major;
+
+    /**
+     * 班级
+     */
+    private String classId;
 
     /**
      * 角色列表

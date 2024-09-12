@@ -52,11 +52,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //        .build();
         return new CustomUserDetails(
                 loginInfo.getId(),
-                loginInfo.getDeptId(),
-                loginInfo.getNickname(),
-                loginInfo.getUsername(),
+                loginInfo.getStudentId(),
                 loginInfo.getPassword(),
-                loginInfo.getStatus() == 1,
+                loginInfo.getName(),
+                loginInfo.getSex(),
+                loginInfo.getEmail(),
+                loginInfo.getMajor(),
+                loginInfo.getClassId(),
+                !"1".equals(loginInfo.getStatus()),
                 authorities);
     }
 
